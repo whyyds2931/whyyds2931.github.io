@@ -168,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initArticles();
   initAnimations();
   initWriteForm();
+  initHeroTitle();
 });
 
 // --- Header Scroll Effect ---
@@ -341,6 +342,15 @@ function initAnimations() {
 
   document.querySelectorAll('.article-card').forEach(card => {
     observer.observe(card);
+  });
+}
+
+// --- Hero Title Click Interaction ---
+function initHeroTitle() {
+  const title = document.getElementById('heroTitle');
+  if (!title) return;
+  title.addEventListener('click', () => {
+    title.classList.toggle('clicked');
   });
 }
 
