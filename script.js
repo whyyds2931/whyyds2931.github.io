@@ -286,7 +286,7 @@ function loadPost() {
     </div>
   `;
 
-  document.title = `${article.title} — why`;
+  document.title = `${article.title} — 聆语会数锯分析`;
 }
 
 // --- Archive Page ---
@@ -417,7 +417,7 @@ function generatePost() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} — why</title>
+  <title>${title} — 聆语会数锯分析</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 </head>
@@ -427,7 +427,7 @@ function generatePost() {
     <div class="header-inner">
       <a href="../index.html" class="logo">
         <span class="logo-mark">✦</span>
-        <span class="logo-text">why</span>
+        <span class="logo-text">聆语会数锯分析</span>
       </a>
       <nav class="main-nav">
         <a href="../index.html" class="nav-link">文章</a>
@@ -442,7 +442,7 @@ function generatePost() {
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-left">
-        <span class="footer-logo">✦ why</span>
+        <span class="footer-logo">✦ 聆语会数锯分析</span>
         <p class="footer-desc">用文字捕捉思维的吉光片羽</p>
       </div>
       <div class="footer-right">
@@ -475,7 +475,7 @@ function generatePost() {
         <div class="post-divider"></div>
         <div class="post-content">\${article.content}</div>
       \`;
-      document.title = article.title + ' — why';
+      document.title = article.title + ' — 聆语会数锯分析';
     });
   </script>
 </body>
