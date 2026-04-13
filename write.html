@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>写文章 — why</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <div class="grain-overlay"></div>
+
+  <header class="site-header scrolled">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">why</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">文章</a>
+        <a href="archive.html" class="nav-link">归档</a>
+        <a href="about.html" class="nav-link">关于</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">文章</a>
+    <a href="archive.html" class="mobile-nav-link">归档</a>
+    <a href="about.html" class="mobile-nav-link">关于</a>
+  </div>
+
+  <main class="main-content">
+    <div class="write-container">
+      <div class="write-header">
+        <h1>写一篇文章</h1>
+        <button class="write-btn" id="previewBtn">预览</button>
+      </div>
+
+      <form class="write-form" id="writeForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="titleInput">标题</label>
+            <input type="text" id="titleInput" placeholder="文章的标题" required>
+          </div>
+          <div class="form-group">
+            <label for="slugInput">别名</label>
+            <input type="text" id="slugInput" placeholder="url-slug">
+            <span class="form-hint">用于 URL，将根据标题自动生成</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tagInput">标签</label>
+          <input type="text" id="tagInput" placeholder="随笔 / 技术 / 方法论 / 阅读 / 工具 / 效率">
+        </div>
+
+        <div class="form-group" id="editor">
+          <label for="contentInput">内容</label>
+          <textarea id="contentInput" placeholder="在这里写下你的文章...
+
+支持简单的 Markdown 格式：
+# 一级标题
+## 二级标题
+### 三级标题
+**粗体** *斜体* `代码`
+> 引用
+- 列表项
+
+写完后点击「生成文章」下载 HTML 文件。"></textarea>
+        </div>
+
+        <div class="write-preview" id="preview">
+          <div id="previewContent"></div>
+        </div>
+
+        <button type="submit" class="write-btn" style="align-self: flex-start; background: var(--ink); border-color: var(--ink);">生成文章</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">✦ why</span>
+        <p class="footer-desc">用文字捕捉思维的吉光片羽</p>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/whyyds2931" class="footer-link" target="_blank">GitHub</a>
+        <a href="https://github.com/whyyds2931/whyyds2931.github.io" class="footer-link" target="_blank">Source</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 — 2026 · 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>why — 数字花园</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+SC:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <div class="grain-overlay"></div>
+
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">why</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link active">文章</a>
+        <a href="archive.html" class="nav-link">归档</a>
+        <a href="about.html" class="nav-link">关于</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link active">文章</a>
+    <a href="archive.html" class="mobile-nav-link">归档</a>
+    <a href="about.html" class="mobile-nav-link">关于</a>
+  </div>
+
+  <main class="main-content" id="mainContent">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-tag">数字花园</div>
+        <h1 class="hero-title">种一株思想的植物</h1>
+        <p class="hero-subtitle">在这里，记录观察、思考与成长。<br>文字是种子，写作是浇灌。</p>
+        <div class="hero-scroll-hint">
+          <span>向下探索</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="articles" id="articlesSection">
+      <div class="articles-inner">
+        <div class="articles-header">
+          <h2 class="articles-title">最近的文章</h2>
+          <a href="archive.html" class="articles-all">
+            查看全部
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="articles-grid" id="articlesGrid">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">✦ why</span>
+        <p class="footer-desc">用文字捕捉思维的吉光片羽</p>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/whyyds2931" class="footer-link" target="_blank">GitHub</a>
+        <a href="https://github.com/whyyds2931/whyyds2931.github.io" class="footer-link" target="_blank">Source</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 — 2026 · 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
