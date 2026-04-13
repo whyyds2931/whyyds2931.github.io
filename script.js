@@ -161,10 +161,7 @@ function initMobileMenu() {
 
 // --- Load Articles ---
 function initArticles() {
-  const grid = document.getElementById('articlesGrid');
-  if (!grid) return;
-
-  // Check if we're on a post page
+  // Check if we're on a post page first
   const isPostPage = window.location.pathname.includes('/post/') ||
                       document.getElementById('postContent');
 
@@ -172,6 +169,9 @@ function initArticles() {
     loadPost();
     return;
   }
+
+  const grid = document.getElementById('articlesGrid');
+  if (!grid) return;
 
   // Sort by date descending
   const sorted = [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
