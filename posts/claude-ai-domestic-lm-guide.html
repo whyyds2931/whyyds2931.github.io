@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code 接入国产大模型完全指南 — 聆语会数锯分析</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <div class="grain-overlay"></div>
+  <header class="site-header scrolled">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">聆语会数锯分析</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" class="nav-link">文章</a>
+        <a href="../archive.html" class="nav-link">归档</a>
+        <a href="../about.html" class="nav-link">关于</a>
+      </nav>
+    </div>
+  </header>
+  <main class="main-content">
+    <div id="postContent"></div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">✦ 聆语会数锯分析</span>
+        <p class="footer-desc">用文字捕捉思维的吉光片羽</p>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/whyyds2931" class="footer-link" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const article = {
+      slug: 'claude-ai-domestic-lm-guide',
+      title: 'Claude Code 接入国产大模型完全指南',
+      date: '2026-04-16',
+      tag: '技术 / 工具 / AI',
+      readtime: '21 分钟',
+      excerpt: '## 前言：为什么需要接入国产大模型  在人工智能技术飞速发展的今天，大语言模型已经成为科研工作者和开发者的重要工具。然而，由于网络限制和成本考量，许多国内用户在使用 Claude Code 时面临诸...',
+      content: "<p><h2>前言：为什么需要接入国产大模型</h2></p><p>在人工智能技术飞速发展的今天，大语言模型已经成为科研工作者和开发者的重要工具。然而，由于网络限制和成本考量，许多国内用户在使用 Claude Code 时面临诸多不便。接入国产大模型提供了一种可行的替代方案，让用户能够在保持高效工作流程的同时，获得稳定、经济的 AI 辅助能力。</p><p>国产大模型（如豆包、文心、通义、Kimi 等）在中文理解能力和本地化服务方面具有独特优势。这些模型对中文语境的理解更加深入，响应速度通常也更加稳定。本文将详细介绍如何将 Claude Code 配置为使用这些国产大模型 API，并结合 statamcp 工具进行计量经济学数据分析。</p><p>需要特别说明的是，本文介绍的是通过第三方大模型 API 服务接入的方式，这是一种合法合规的技术配置方法。用户需要自行注册相应平台的 API 服务，并按照各平台的收费标准付费使用。</p><p><h2>环境准备：Node.js、Git、Claude CLI</h2></p><p>在开始配置之前，需要确保本地环境已经安装了必要的依赖工具。</p><p><h3>Node.js 安装</h3></p><p>Node.js 是运行 Claude CLI 的基础环境。建议安装 LTS（长期支持）版本以获得更好的稳定性。</p><p><code>`</code>bash\n<h1>使用 nvm 安装 Node.js（推荐）</h1>\ncurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash\nnvm install --lts\nnvm use --lts</p><p><h1>验证安装</h1>\nnode --version\nnpm --version\n<code>`</code></p><p><h3>Git 安装</h3></p><p>Git 是版本控制工具，也是安装 Claude CLI 的必要前提。</p><p><code>`</code>bash\n<h1>Windows 用户可从官网下载安装包</h1>\n<h1>https://git-scm.com/download/win</h1></p><p><h1>macOS 用户</h1>\nbrew install git</p><p><h1>Linux 用户</h1>\nsudo apt-get update\nsudo apt-get install git</p><p><h1>验证安装</h1>\ngit --version\n<code>`</code></p><p><h3>Claude CLI 安装</h3></p><p>Claude CLI 是 Anthropic 提供的命令行工具，用于与 Claude 模型交互。</p><p><code>`</code>bash\n<h1>通过 npm 全局安装</h1>\nnpm install -g @anthropic-ai/claude-code</p><p><h1>验证安装</h1>\nclaude --version\n<code>`</code></p><p><h2>获取国产大模型 API</h2></p><p>要接入国产大模型，首先需要在相应平台注册账号并获取 API 密钥。以下是主流国产大模型平台的获取方法。</p><p><h3>豆包大模型（ByteDance）</h3></p><p>豆包是字节跳动推出的国产大模型，在中文理解方面表现出色。</p><p><ol><ul><li>访问[豆包开放平台](https://console.volcengine.com/ark)</li>\n<li>注册或登录账号</li>\n<li>进入「应用管理」创建新应用</li>\n<li>获取 API Key 和 API Secret</li>\n<li>选择「ark」服务区域（建议选择华北或华东）</li></p><p>豆包提供一定的免费额度，新用户可以先体验后付费。</p><p><h3>文心一言（百度）</h3></p><p>百度文心一言是国内最早推出的大模型产品之一。</p><p><li>访问[百度智能云控制台](https://console.bce.baidu.com/)</li>\n<li>开通「文心一言」服务</li>\n<li>创建应用获取 API Key 和 Secret Key</li>\n<li>通过 Access Token 获取调用凭证</li></p><p>百度的 Ernie Bot API 采用调用量计费方式，价格相对实惠。</p><p><h3>通义千问（阿里云）</h3></p><p>阿里云的通义千问在多模态和长文本处理方面具有优势。</p><p><li>访问[阿里云 DashScope](https://dashscope.console.aliyun.com/)</li>\n<li>注册并开通服务</li>\n<li>在「API-KEY 管理」中创建新的 API Key</li>\n<li>记录下 API Key 备用</li></p><p>通义千问提供多种模型规格，可根据实际需求选择。</p><p><h3>Kimi（月之暗面）</h3></p><p>Kimi 以其超长上下文窗口著称，特别适合处理长文档分析任务。</p><p><li>访问 [Kimi 开放平台](https://platform.moonshot.cn/)</li>\n<li>注册账号并完成实名认证</li>\n<li>创建 API Key</li>\n<li>选择适合的模型版本（kimi-v1 或 kimi-vision）</li></p><p>Kimi 的上下文窗口可达 20 万字，适合处理长文档分析。</p><p><h2>配置 ANTHROPIC_BASE_URL 环境变量</h2></p><p>Claude Code 默认连接 Anthropic 的官方 API 服务器。通过设置 <code>ANTHROPIC_BASE_URL</code> 环境变量，可以将请求转发到其他兼容的 API 服务器。</p><p><h3>Windows 系统配置</h3></p><p><code>`</code>powershell\n<h1>临时设置（仅当前会话有效）</h1>\n$env:ANTHROPIC_BASE_URL = \"https://api.doubao.com/v1\"</p><p><h1>永久设置（需要管理员权限）</h1>\n[System.Environment]::SetEnvironmentVariable(\n    \"ANTHROPIC_BASE_URL\",\n    \"https://api.doubao.com/v1\",\n    \"User\"\n)\n<code>`</code></p><p><h3>macOS/Linux 系统配置</h3></p><p><code>`</code>bash\n<h1>临时设置</h1>\nexport ANTHROPIC_BASE_URL=\"https://api.doubao.com/v1\"</p><p><h1>永久设置 - 编辑 ~/.bashrc 或 ~/.zshrc</h1>\necho 'export ANTHROPIC_BASE_URL=\"https://api.doubao.com/v1\"' >> ~/.bashrc\nsource ~/.bashrc\n<code>`</code></p><p><h3>不同平台的 API 地址</h3></p><p>以下是主流国产大模型的 API 地址供参考：</p><p>| 平台 | API 地址 | 说明 |\n|------|----------|------|\n| 豆包 | https://api.doubao.com/v1 | 字节跳动 |\n| 文心 | https://aip.baidubce.com/rpc/2.0/ai_custom/v1 | 百度智能云 |\n| 通义 | https://dashscope.aliyuncs.com/api/v1 | 阿里云 |\n| Kimi | https://api.moonshot.cn/v1 | 月之暗面 |</p><p><h2>配置模型认证信息</h2></p><p>除了 API 地址，还需要配置认证信息以完成 API 调用。</p><p><h3>使用 API Key 认证</h3></p><p>大多数国产大模型 API 采用 API Key 进行认证。</p><p><code>`</code>bash\n<h1>设置 API Key</h1>\nexport API_KEY=\"your-api-key-here\"</p><p><h1>或者在 Claude Code 配置中直接设置</h1>\nclaude config set api_key your-api-key-here\n<code>`</code></p><p><h3>OAuth 认证方式</h3></p><p>部分平台（如百度文心）使用 OAuth 2.0 认证流程。</p><p><code>`</code>python\n<h1>Python 示例：获取百度 Access Token</h1>\nimport requests</p><p>def get_baidu_access_token(api_key, secret_key):\n    auth_url = \"https://aip.baidubce.com/oauth/2.0/token\"\n    params = {\n        \"grant_type\": \"client_credentials\",\n        \"client_id\": api_key,\n        \"client_secret\": secret_key\n    }\n    response = requests.post(auth_url, params=params)\n    return response.json().get(\"access_token\")</p><p>access_token = get_baidu_access_token(\"your-api-key\", \"your-secret-key\")\n<code>`</code></p><p><h3>在 Claude Code 中配置认证</h3></p><p><code>`</code>bash\n<h1>创建配置文件</h1>\nmkdir -p ~/.claude\nvim ~/.claude/config.json</p><p><h1>配置文件内容示例</h1>\n{\n  \"models\": [\n    {\n      \"name\": \"doubao-pro\",\n      \"api_url\": \"https://api.doubao.com/v1/chat/completions\",\n      \"api_key\": \"your-doubao-api-key\"\n    }\n  ],\n  \"default_model\": \"doubao-pro\"\n}\n<code>`</code></p><p><h2>安装 statamcp（Stata MCP 服务器）</h2></p><p>statamcp 是一个将 Stata 与大模型连接的工具，允许 AI 直接调用 Stata 进行计量经济分析。</p><p><h3>安装前提</h3></p><p><li>Stata 17 或更高版本（已安装并可正常运行）</li>\n<li>Python 3.8 或更高版本</li>\n<li>pip 包管理器</li></p><p><h3>通过 pip 安装</h3></p><p><code>`</code>bash\n<h1>安装 statamcp</h1>\npip install statamcp</p><p><h1>验证安装</h1>\nstatamcp --version\n<code>`</code></p><p><h3>配置 Stata 路径</h3></p><p>如果 Stata 不在系统 PATH 中，需要手动指定路径。</p><p><code>`</code>bash\n<h1>方式一：环境变量</h1>\nexport STATAPATH=\"/usr/local/stata/stata-se\"</p><p><h1>方式二：配置文件</h1>\n<h1>在 ~/.statamcp/config.json 中添加</h1>\n{\n  \"stata_path\": \"/usr/local/stata/stata-se\"\n}\n<code>`</code></p><p><h3>启动 statamcp 服务</h3></p><p><code>`</code>bash\n<h1>启动 statamcp 服务器</h1>\nstatamcp start</p><p><h1>或者指定端口</h1>\nstatamcp start --port 8080\n<code>`</code></p><p><h2>配置 Skills（如 Stata 技能）</h2></p><p>Claude Code 的 skills 功能允许用户定义自定义任务和工作流。结合 statamcp，可以实现自动化的计量经济学分析流程。</p><p><h3>创建 Stata 分析技能</h3></p><p><code>`</code>bash\n<h1>在 ~/.claude/skills/ 目录下创建 stata.yaml</h1>\nmkdir -p ~/.claude/skills\nvim ~/.claude/skills/stata.yaml\n<code>`</code></p><p><code>`</code>yaml\nname: stata\ndescription: 使用 Stata 进行计量经济学分析\ncommands:\n  - name: regress\n    description: 执行 OLS 回归分析\n    prompt: |\n      请使用 Stata 进行 OLS 回归分析。\n      数据文件：{file}\n      因变量：{dependent_var}\n      自变量：{independent_vars}\n      \n      请完成以下步骤：\n      1. 加载数据并描述性统计\n      2. 执行 OLS 回归\n      3. 进行异方差检验（White 检验）\n      4. 生成回归结果表格</p><p>  - name: panel\n    description: 面板数据分析\n    prompt: |\n      请使用 Stata 进行面板数据回归分析。\n      数据文件：{file}\n      个体变量：{entity_var}\n      时间变量：{time_var}\n      \n      请完成：\n      1. 描述面板数据结构\n      2. 进行固定效应和随机效应估计\n      3. Hausman 检验以选择合适模型\n      4. 生成规范的结果表格\n<code>`</code></p><p><h3>启用技能配置</h3></p><p><code>`</code>bash\n<h1>在 Claude Code 中启用技能</h1>\nclaude config set enable_skills true</p><p><h1>指定技能目录</h1>\nclaude config set skills_path ~/.claude/skills\n<code>`</code></p><p><h2>验证连接：运行简单测试</h2></p><p>完成以上配置后，应该验证各组件是否正常工作。</p><p><h3>测试 API 连接</h3></p><p><code>`</code>bash\n<h1>使用 curl 测试 API 连通性</h1>\ncurl -X POST \"https://api.doubao.com/v1/chat/completions\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer YOUR-API-KEY\" \\\n  -d '{\n    \"model\": \"doubao-pro\",\n    \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}],\n    \"max_tokens\": 100\n  }'\n<code>`</code></p><p><h3>测试 Claude Code 基本功能</h3></p><p><code>`</code>bash\n<h1>测试 Claude Code 是否正常工作</h1>\nclaude --version</p><p><h1>测试模型响应</h1>\nclaude \"请简单介绍一下你自己\"\n<code>`</code></p><p><h3>测试 statamcp 连接</h3></p><p><code>`</code>bash\n<h1>检查 statamcp 服务状态</h1>\nstatamcp status</p><p><h1>测试 Stata 连接</h1>\npython -c \"\nfrom statamcp import StatamcpClient\nclient = StatamcpClient()\nresult = client.run('display \\\"Hello from Stata\\\"')\nprint(result)\n\"\n<code>`</code></p><p><h3>综合测试流程</h3></p><p><code>`</code>bash\n<h1>完整测试序列</h1>\necho \"=== 1. 测试环境 ===\"\nnode --version && npm --version && git --version</p><p>echo \"=== 2. 测试 API 连通性 ===\"\ncurl -s --max-time 10 https://api.doubao.com/v1/models > /dev/null && echo \"API OK\" || echo \"API Failed\"</p><p>echo \"=== 3. 测试 statamcp ===\"\nstatamcp status</p><p>echo \"=== 4. 测试 Claude Code ===\"\nclaude --version\n<code>`</code></p><p><h2>使用示例：计量经济学分析工作流</h2></p><p>下面通过一个实际案例演示完整的工作流程。</p><p><h3>案例背景</h3></p><p>假设我们要分析「家庭收入与消费支出之间的关系」，使用某调查数据数据集（data/household.csv）。</p><p><h3>数据概览</h3></p><p><code>`</code>stata\n* 加载数据\nuse \"data/household.csv\", clear</p><p>* 描述性统计\nsummarize income consumption education age household_size\n<code>`</code></p><p><h3>基准 OLS 回归</h3></p><p><code>`</code>stata\n* 基准回归模型\nregress consumption income, robust</p><p>* 保存结果\nesttab基准回归 using \"results/ols_basic.csv\", csv replace\n<code>`</code></p><p><h3>面板数据分析</h3></p><p><code>`</code>stata\n* 设置面板数据结构\nxtset panel_id year</p><p>* 固定效应模型\nxtreg consumption income, fe robust</p><p>* 随机效应模型\nxtreg consumption income, re</p><p>* Hausman 检验\nhausman fe re, sigmamore\n<code>`</code></p><p><h3>完整分析流程示例</h3></p><p><code>`</code>python\n<h1>使用 Python 脚本调用 statamcp</h1>\nfrom statamcp import StatamcpClient</p><p>client = StatamcpClient()</p><p><h1>定义分析任务</h1>\nanalysis_task = \"\"\"\n<li>加载数据集 data/household.csv</li>\n<li>进行描述性统计分析</li>\n<li>执行 OLS 回归：consumption ~ income + education + age</li>\n<li>进行 White 异方差检验</li>\n<li>执行固定效应面板回归</li>\n<li>进行 Hausman 检验</li>\n<li>输出规范格式的回归结果表格</li>\n\"\"\"</p><p><h1>提交给 statamcp 执行</h1>\nresult = client.run(analysis_task)\nprint(result)\n<code>`</code></p><p><h3>生成分析报告</h3></p><p><code>`</code>stata\n* 使用 estout 生成规范的回归表格\nesttab ols_fe ols_re using \"results/regression_table.tex\", ///\n    title(\"回归结果表\") ///\n    label ///\n    replace ///\n    booktabs ///\n    alignment(Dcolumn)</p><p>* 输出描述性统计表\nestpost summarize income consumption education age, separator(0)\nesttab using \"results/descriptive.tex\", cells(mean sd) replace\n<code>`</code></p><p><h2>常见问题与解决方案</h2></p><p><h3>API 调用失败</h3></p><p><strong>问题</strong>：API 返回 401 或 403 错误。</p><p><strong>解决方案</strong>：\n<li>检查 API Key 是否正确</li>\n<li>确认 API Key 是否已激活</li>\n<li>检查账户余额是否充足</li>\n<li>验证 API 地址是否正确</li></p><p><h3>连接超时</h3></p><p><strong>问题</strong>：请求长时间无响应。</p><p><strong>解决方案</strong>：\n<li>检查网络连接状态</li>\n<li>尝试更换 API 地址（如使用 Kimi 的备用节点）</li>\n<li>增加超时时间配置</li></p><p><h3>Stata 连接异常</h3></p><p><strong>问题</strong>：statamcp 无法连接 Stata。</p><p><strong>解决方案</strong>：\n<li>确认 Stata 已正确安装</li>\n<li>检查 Stata 路径配置</li>\n<li>验证 Stata 授权是否有效</li>\n<li>确认 Python 与 Stata 的通信端口未被占用</li></p><p><h2>结语</h2></p><p>通过本文的介绍，相信读者已经掌握了配置 Claude Code 接入国产大模型的方法。这种配置方式具有以下优势：</p><p><li><strong>成本效益</strong>：国产大模型 API 价格通常低于官方 Claude API</li>\n<li><strong>稳定性</strong>：国内服务器响应更快速，网络连接更稳定</li>\n<li><strong>本地化</strong>：对中文语境的理解更加准确，特别适合中文数据分析任务</li>\n<li><strong>合规性</strong>：使用正规渠道接入，符合国内法规要求</li></ul></ol></p><p>结合 statamcp 工具，用户可以构建完整的 AI 辅助计量经济学分析工作流，从数据处理到模型估计再到结果输出，都可以得到 AI 的协助。希望本文能为您的研究工作提供帮助。</p>"
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('postContent');
+      container.innerHTML = `
+        <div class="post-hero">
+          <div class="post-hero-tag">${article.tag}</div>
+          <h1 class="post-hero-title">${article.title}</h1>
+          <div class="post-hero-meta">
+            <span>${new Date(article.date).toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric'})}</span>
+            <span>${article.readtime}</span>
+          </div>
+        </div>
+        <div class="post-divider"></div>
+        <div class="post-content">${article.content}</div>
+      `;
+      document.title = article.title + ' — 聆语会数锯分析';
+    });
+  </script>
+</body>
+</html>
