@@ -4,6 +4,7 @@
 
 // --- Article Data ---
 const articles = [
+  {"slug": "2026-09-24-horizon-news", "title": "2026-09-24 每日资讯日报", "date": "2026-09-24", "tag": "AI 日报", "readtime": "2 分钟", "excerpt": "从 168 条内容中筛选出 1 条重要资讯。", "content": "\n<blockquote>从 168 条内容中筛选出 1 条重要资讯。</blockquote>\n\n<hr>\n\n<p><strong>科技新闻</strong></p>\n<ul>\n<li><a href=\"#item-tech-news-1\">Claude discovers a novel enzyme system with CRISPR-like repeats</a> ⭐️ 8.0/10</li>\n</ul>\n\n<hr>\n\n<h2>科技新闻</h2>\n\n<a id=\"item-tech-news-1\"></a>\n<h3><a href=\"https://www.anthropic.com/news/claude-discovers-novel-enzyme-system\" target=\"_blank\" rel=\"noopener\">Claude discovers a novel enzyme system with CRISPR-like repeats</a> ⭐️ 8.0/10</h3>\n\n<p>Anthropic reports that a Claude agent identified a previously undescribed enzyme system with CRISPR-like repeats, highlighting the growing capabilities of AI in biological discovery.</p>\n\n<p>hackernews · raahelb · 9月23日 18:06 · <a href=\"https://news.ycombinator.com/item?id=49820134\" target=\"_blank\" rel=\"noopener\">社区讨论</a></p>\n\n<p><strong>标签</strong>: <code>#artificial-intelligence</code>, <code>#ai-for-science</code>, <code>#claude</code>, <code>#bioinformatics</code></p>\n\n<hr>"},
   {
     slug: 'claude-github-pages-blog',
     title: '使用 Claude 和 GitHub 搭建免费静态博客',
